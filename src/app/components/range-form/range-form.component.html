@@ -1,0 +1,72 @@
+<form name="rangeForm" novalidate [formGroup]="rangeForm">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <label for="start">Start:</label>
+    </div>
+    <div class="col-12 col-md-4">
+      <label for="end">End:</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div class="form-group">
+        <input
+          class="form-control"
+          name="start"
+          formControlName="start"
+          id="start"
+          min="1"
+          type="number"
+        />
+        <div
+          *ngIf="
+            (rangeForm?.get('start'))!.invalid &&
+            ((rangeForm?.get('start'))!.dirty ||
+              (rangeForm?.get('start'))!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="rangeForm?.get('start')?.errors?.min"
+          >
+            This field must be greater than zero
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="form-group">
+        <input
+          class="form-control"
+          name="end"
+          formControlName="end"
+          id="end"
+          min="1"
+          type="number"
+        />
+        <div
+          *ngIf="
+            (rangeForm?.get('end'))!.invalid &&
+            ((rangeForm?.get('end'))!.dirty || (rangeForm?.get('end'))!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="rangeForm?.get('end')?.errors?.min"
+          >
+            This field must be greater than zero
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <button
+        [disabled]="rangeForm.invalid || isBadRange"
+        class="btn btn-primary btn-block"
+        (click)="sendEvent()"
+      >
+        Run
+      </button>
+    </div>
+  </div>
+</form>

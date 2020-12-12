@@ -1,0 +1,6 @@
+<div class="container" role="main">
+  <h1 class="my-4">{{ title }}</h1>
+
+  <app-range-form (rangeChange)="onRangeChange($event)"></app-range-form>
+  <app-terminal [items]="items"></app-terminal>
+</div>
